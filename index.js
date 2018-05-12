@@ -28,7 +28,7 @@ let sdb_votes = mongoose.model('sdb_votes', {
     weight: String,
     author: String,
     permlink: String,
-    timestamp: { type: Date, expires: '90d'},
+    timestamp: Date,
   });
 let sdb_transfers = mongoose.model('sdb_transfers', {
     _id: String,
@@ -36,21 +36,21 @@ let sdb_transfers = mongoose.model('sdb_transfers', {
     to: String,
     amount: String,
     memo: String,
-    timestamp: { type: Date, expires: '90d'},
+    timestamp: Date,
   });
 let sdb_follows = mongoose.model('sdb_follows', {
     _id: String,
     follower: String,
     following: String,
     blog: Boolean,
-    timestamp: { type: Date, expires: '90d'},
+    timestamp: Date,
   });
 let sdb_reblogs = mongoose.model('sdb_reblogs', {
     _id: String,
     account: String,
     author: String,
     permlink: String,
-    timestamp: { type: Date, expires: '90d'},
+    timestamp: Date,
   });
 let sdb_claim_reward_balances = mongoose.model('sdb_claim_reward_balances', {
     _id: String,
@@ -58,7 +58,7 @@ let sdb_claim_reward_balances = mongoose.model('sdb_claim_reward_balances', {
     reward_steem: String,
     reward_sbd: String,
     reward_vests: String,
-    timestamp: { type: Date, expires: '90d'},
+    timestamp: Date,
   });
 let sdb_comments = mongoose.model('sdb_comments', {
     _id: String,
@@ -69,7 +69,8 @@ let sdb_comments = mongoose.model('sdb_comments', {
     title: String,
     body: { type: String, default: ''},
     json_metadata: String,
-    timestamp: { type: Date, expires: '90d'},
+    timestamp: Date,
+    app: String
   });
 let sdb_mentions = mongoose.model('sdb_mentions', {
     _id: String,
@@ -77,7 +78,7 @@ let sdb_mentions = mongoose.model('sdb_mentions', {
     post: Boolean,
     author: String,
     permlink: String,
-    timestamp: { type: Date, expires: '90d'},
+    timestamp: Date,
   });
 let sdb_comment_options = mongoose.model('sdb_comment_options', {
     _id: String,
@@ -88,7 +89,7 @@ let sdb_comment_options = mongoose.model('sdb_comment_options', {
     allow_votes: Boolean,
     allow_curation_rewards: Boolean,
     extensions: String,
-    timestamp: { type: Date, expires: '90d'},
+    timestamp: Date,
   });
 let sdb_account_updates = mongoose.model('sdb_account_updates', {
     _id: String,
@@ -98,13 +99,13 @@ let sdb_account_updates = mongoose.model('sdb_account_updates', {
     owner: String,
     memo_key: String,
     json_metadata: String,
-    timestamp: { type: Date, expires: '90d'},
+    timestamp: Date,
   });
 let sdb_producer_rewards = mongoose.model('sdb_producer_rewards', {
     _id: String,
     producer: String,
     vesting_shares: String,
-    timestamp: { type: Date, expires: '90d'},
+    timestamp: Date,
   });
 let sdb_curation_rewards = mongoose.model('sdb_curation_rewards', {
     _id: String,
@@ -112,7 +113,7 @@ let sdb_curation_rewards = mongoose.model('sdb_curation_rewards', {
     reward: String,
     comment_author: String,
     comment_permlink: String,
-    timestamp: { type: Date, expires: '90d'},
+    timestamp: Date,
   });
 let sdb_author_rewards = mongoose.model('sdb_author_rewards', {
     _id: String,
@@ -121,14 +122,14 @@ let sdb_author_rewards = mongoose.model('sdb_author_rewards', {
     sbd_payout: String,
     steem_payout: String,
     vesting_payout: String,
-    timestamp: { type: Date, expires: '90d'},
+    timestamp: Date,
   });
 let sdb_delegate_vesting_shares = mongoose.model('sdb_delegate_vesting_shares', {
     _id: String,
     delegator: String,
     delegatee: String,
     vesting_shares: String,
-    timestamp: { type: Date, expires: '90d'},
+    timestamp: Date,
   });
 let sdb_comment_benefactor_rewards = mongoose.model('sdb_comment_benefactor_rewards', {
     _id: String,
@@ -137,14 +138,14 @@ let sdb_comment_benefactor_rewards = mongoose.model('sdb_comment_benefactor_rewa
     permlink: String,
     reward: String,
     vest: Number,
-    timestamp: { type: Date, expires: '90d'},
+    timestamp: Date,
   });
 let sdb_transfer_to_vestings = mongoose.model('sdb_transfer_to_vestings', {
     _id: String,
     from: String,
     to: String,
     amount: String,
-    timestamp: { type: Date, expires: '90d'},
+    timestamp: Date,
   });
 let sdb_fill_orders = mongoose.model('sdb_fill_orders', {
     _id: String,
@@ -154,13 +155,13 @@ let sdb_fill_orders = mongoose.model('sdb_fill_orders', {
     open_owner: String,
     open_orderid: String,
     open_pays: String,
-    timestamp: { type: Date, expires: '90d'},
+    timestamp: Date,
   });
 let sdb_return_vesting_delegations = mongoose.model('sdb_return_vesting_delegations', {
     _id: String,
     account: String,
     vesting_shares: String,
-    timestamp: { type: Date, expires: '90d'},
+    timestamp: Date,
   });
 let sdb_limit_order_creates = mongoose.model('sdb_limit_order_creates', {
     _id: String,
@@ -170,20 +171,20 @@ let sdb_limit_order_creates = mongoose.model('sdb_limit_order_creates', {
     min_to_receive: String,
     fill_or_kill: Boolean,
     expiration: Date,
-    timestamp: { type: Date, expires: '90d'},
+    timestamp: Date,
 });
 let sdb_withdraw_vestings = mongoose.model('sdb_withdraw_vestings', {
     _id: String,
     account: String,
     vesting_shares: String,
-    timestamp: { type: Date, expires: '90d'},
+    timestamp: Date,
 });
 let sdb_account_witness_votes = mongoose.model('sdb_account_witness_votes', {
     _id: String,
     account: String,
     witness: String,
     approve: Boolean,
-    timestamp: { type: Date, expires: '90d'},
+    timestamp: Date,
 });
 let sdb_fill_vesting_withdraws = mongoose.model('sdb_fill_vesting_withdraws', {
     _id: String,
@@ -191,7 +192,7 @@ let sdb_fill_vesting_withdraws = mongoose.model('sdb_fill_vesting_withdraws', {
     to_account: String,
     withdrawn: String,
     deposited: String,
-    timestamp: { type: Date, expires: '90d'},
+    timestamp: Date,
 });
 let sdb_states = mongoose.model('sdb_states', {
     _id: String,
@@ -308,7 +309,7 @@ const parseNextBlock = async () => {
           transfer_to_vestings=[],fill_orders=[],return_vesting_delegations=[],withdraw_vestings=[],
           limit_order_creates=[],fill_vesting_withdraws=[],account_witness_votes=[],escrow_transfers=[];
 
-      if (numDaysBetween(new Date(), new Date(block[0].timestamp))<90) {
+      if (true) {
 
         for (var i = 0; i < block.length; i++) {
 
@@ -429,7 +430,8 @@ const parseNextBlock = async () => {
               title: oop.title,
               body: oop.body,
               json_metadata: oop.json_metadata,
-              timestamp: oop.timestamp
+              timestamp: oop.timestamp,
+              app: JSON.parse(oop.json_metadata).app || ''
             });
           }
           if (op[0]==='comment_options') {
